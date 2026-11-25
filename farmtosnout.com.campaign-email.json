@@ -3,10 +3,10 @@
   "providerName": "Farm to Snout Campaign Studio",
   "serviceId": "campaign-email",
   "serviceName": "Campaign email sending",
-  "version": 1,
+  "version": 2,
   "syncPubKeyDomain": "farmtosnout.com",
   "syncRedirectDomain": "hgftrading.chatgpt.site",
-  "description": "Add only Resend DKIM and outbound return-path records for Campaign Studio. Does not change inbox routing.",
+  "description": "Add Resend DKIM, outbound return-path, and sending CNAME records for Campaign Studio. Does not change inbox routing.",
   "records": [
     {
       "groupId": "dkim",
@@ -29,6 +29,13 @@
       "type": "SPFM",
       "host": "send",
       "spfRules": "include:amazonses.com",
+      "ttl": 3600
+    },
+    {
+      "groupId": "outbound",
+      "type": "CNAME",
+      "host": "rsend",
+      "pointsTo": "send.forge.rmta.net",
       "ttl": 3600
     }
   ]
